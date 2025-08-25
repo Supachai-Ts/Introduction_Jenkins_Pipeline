@@ -9,12 +9,25 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sleep  5
+                sleep 5
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
+            }
+        }
+        stage('List files') {
+            steps {
+                sh 'ls -l'
+            }
+        }
+        post {
+            success {
+                echo 'Pipeline completed successfully'
+            }
+            failure {
+                echo 'Pipeline failed'
             }
         }
     }
